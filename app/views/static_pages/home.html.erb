@@ -1,13 +1,26 @@
 <div class="center hero-unit">
-  <h1>Welcome to the Sample App</h1>
+  <h1>A/B Testing Tools</h1>
 
   <h2>
-    This is the home page for the
-    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
+    Blah blah blah a/b testing
   </h2>
-
-  <%= link_to "Sign up now!", '#', class: "btn btn-large btn-primary" %>
 </div>
 
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+<div class="center">
+	<%= form_tag("", method: "get") do %>
+		<%= label_tag(:control_samples, "Control Samples")%>
+		<%= number_field_tag(:control_samples) %>
+		
+		<%= label_tag(:control_conversions, "Conversions")%>
+		<%= number_field_tag(:control_conversions)%>
+		
+		<%= label_tag(:var1_samples, "Control Samples")%>
+		<%= number_field_tag(:var1_samples) %>
+		
+		<%= label_tag(:var1_conversions, "Conversions")%>
+		<%= number_field_tag(:var1_conversions)%>
+		
+		<%= submit_tag("Calculate") %>
+	
+	<% end %>
+</div>
