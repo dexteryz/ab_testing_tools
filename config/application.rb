@@ -21,5 +21,7 @@ module AbTestingToolkit
     # config.i18n.default_locale = :de
     
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.assets.enabled = true
+    config.assets.compile = true
   end
 end
