@@ -1,0 +1,36 @@
+<div class="row-fluid">
+	<div class="hero-unit">
+	  <h1>A/B Testing Tools</h1>
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="span6">
+		<h2>Input </h2>
+		
+		<%= form_tag("/tests") do %>
+	
+			<div>
+				<%= label_tag(:control_samples, "Control Samples")%>
+				<%= number_field_tag(:control_samples) %>
+
+				<%= label_tag(:control_conversions, "Control Conversions")%>
+				<%= number_field_tag(:control_conversions)%>
+
+				<%= label_tag(:var1_samples, "Variation Samples")%>
+				<%= number_field_tag(:var1_samples) %>
+
+				<%= label_tag(:var1_conversions, "Variation Conversions")%>
+				<%= number_field_tag(:var1_conversions)%>
+			</div>
+		
+			<%= submit_tag("Calculate", class: "btn btn-large btn-primary") %>
+	
+		<% end %>
+	</div>
+	<div class="span2">
+		<h2>Output</h2>
+		<p><%= @result %></p>
+		
+	</div>
+</div>
