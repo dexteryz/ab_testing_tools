@@ -6,7 +6,7 @@
 
 <div class="row-fluid">
 	<div class="span6">
-		<h2>Input </h2>
+		<h2>Input your data</h2>
 		
 		<%= form_tag("/tests") do %>
 	
@@ -28,9 +28,33 @@
 	
 		<% end %>
 	</div>
-	<div class="span2">
-		<h2>Output</h2>
-		<p><%= @result %></p>
-		
+	<div class="span6">
+		<h2>Results</h2>
+		<table class="table">
+			<theader>
+				<tr>
+					<th>Variation</th>
+					<th>Samples</th>
+					<th>Conversions</th>
+					<th>Conversion Rate</th>
+				</tr>
+			</theader>
+			<tbody>
+				<tr>
+					<td>Control</td>
+					<td><%= params[:control_samples] %></td>
+					<td><%= params[:control_conversions] %></td>
+					<td><%= number_to_percentage(@control_cvr, precision: 2) %></td>
+				</tr>
+				<tr>
+					<td>Variation 1</td>
+					<td><%= params[:var1_samples] %></td>
+					<td><%= params[:var1_conversions] %></td>
+					<td><%= number_to_percentage(@var1_cvr, precision: 2) %></td>
+				</tr>
+			</tbody>
+		</table>
+		<h4>Are your results significantly different?</h4>
+		<p><%= @sig_diff %></p>
 	</div>
 </div>

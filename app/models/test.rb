@@ -5,7 +5,8 @@ class Test < ActiveRecord::Base
   validates :var1_samples, presence: true
   validates :var1_conversions, presence: true
 
-  def self.calculate(control_samples, control_conversions, var1_samples, var1_conversions)
+
+  def self.create_test(control_samples, control_conversions, var1_samples, var1_conversions)
     values = {}
     
     control_nonconv = control_samples.to_s.to_i - control_conversions.to_s.to_i
@@ -14,15 +15,23 @@ class Test < ActiveRecord::Base
     values[:control] = { :conversions => control_conversions.to_s.to_i, :nonconv => control_nonconv } 
     values[:variation1] = { :conversions => var1_conversions.to_s.to_i, :nonconv => variation_nonconv }
       
-    tester = ABAnalyzer::ABTest.new values
-    
+    ab_test = ABAnalyzer::ABTest.new values
+
+    return ab_test
+  end
+
+  def self.is_sig_diff?(test)
     begin
       # are the two significant?
-      result = tester.different?
+      sig_diff = test.different?
     rescue ABAnalyzer::InsufficientDataError 
-      result = "Result not available"
+      sig_diff = "Result not available"
     end
     
-    return result
+    return sig_diff
+  end
+
+  def self.get_cvr(samples, conversions)
+    cvr = (conversions.to_f/samples.to_f) * 100
   end
 end
