@@ -34,4 +34,9 @@ class Test < ActiveRecord::Base
   def self.get_cvr(samples, conversions)
     cvr = (conversions.to_f/samples.to_f) * 100
   end
+
+  def self.get_conf_interval(samples, conversions)
+    conf_interval = ABAnalyzer.confidence_interval(conversions, samples, 0.95)
+  end
+  
 end
