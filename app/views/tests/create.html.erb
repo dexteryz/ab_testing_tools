@@ -22,6 +22,7 @@
 
 				<%= label_tag(:var1_conversions, "Variation Conversions")%>
 				<%= number_field_tag(:var1_conversions)%>
+
 			</div>
 		
 			<%= submit_tag("Calculate", class: "btn btn-large btn-primary") %>
@@ -59,5 +60,8 @@
 		</table>
 		<h4>Are your results significantly different?</h4>
 		<p><%= @sig_diff %></p>
+		<div id="visualization">
+
+		</div>
 	</div>
 </div>
